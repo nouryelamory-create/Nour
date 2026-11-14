@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="fr" dir="ltr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Arsène Lupin – Résumés de cours</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Cairo:wght@400;600;700&family=Cormorant+Garamond:ital,wght@0,500;1,500;1,700&display=swap">
+<style>
+:root{--bg:#F3F4F7;--ink:#151A2E;--mute:#5B6279;--line:#CDD2DF;--ruby:#9E1B34;--card:#FFFFFF;color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0F1322;--ink:#ECEEF5;--mute:#9AA2BB;--line:#2A3150;--ruby:#E0587A;--card:#171C32;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#0F1322;--ink:#ECEEF5;--mute:#9AA2BB;--line:#2A3150;--ruby:#E0587A;--card:#171C32;color-scheme:dark}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:var(--fs,17px)/1.7 "Inter","Cairo",system-ui,sans-serif}
+.wrap{position:relative;max-width:680px;margin:0 auto;padding:60px 20px 64px}
+.fr{font-family:"Cormorant Garamond",Georgia,"Times New Roman",serif;direction:ltr}
+header{text-align:center;padding-bottom:28px;border-bottom:1px solid var(--line)}
+.neck{width:min(320px,86%);height:auto;display:block;margin:0 auto 6px}
+.neck .arc{fill:none;stroke:var(--line);stroke-width:1.5}
+.neck .pearl{fill:var(--card);stroke:var(--mute);stroke-width:1.2}
+.neck .gem{fill:var(--ruby)}
+h1{margin:0;font-weight:700;font-style:italic;font-size:clamp(2.5rem,10vw,3.8rem);line-height:1.05}
+.by{margin:14px 0 0;color:var(--mute);font-size:.98rem}
+.about{margin:26px 0 0;font-size:1rem}
+h2{font-size:1.25rem;margin:36px 0 14px}
+.search{width:100%;padding:11px 14px;font:inherit;font-size:1rem;color:var(--ink);background:var(--card);border:1px solid var(--line);border-radius:10px;margin-bottom:14px}
+.search:focus-visible,summary:focus-visible{outline:2px solid var(--ruby);outline-offset:2px}
+details{background:var(--card);border:1px solid var(--line);border-radius:10px;margin-bottom:10px}
+summary{cursor:pointer;padding:14px 16px;font-weight:600;list-style:none;display:flex;gap:10px;align-items:baseline}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"+";margin-inline-start:auto;color:var(--ruby);font-size:1.3rem;line-height:1}
+details[open] summary::after{content:"−"}
+.n{color:var(--ruby);white-space:nowrap}
+.body{padding:2px 16px 16px;border-top:1px solid var(--line)}
+.body h3{font-size:1.02rem;margin:18px 0 6px;color:var(--ruby)}
+.body p{margin:8px 0}
+.pts{direction:ltr;margin:6px 0;padding-left:1.7em}
+.pts li{font-family:"Cormorant Garamond",Georgia,serif;font-size:1.22rem;line-height:1.55;font-weight:500;margin:8px 0;padding-left:4px}
+.v{display:grid;grid-template-columns:1fr 1fr;gap:4px 14px;padding:8px 0;border-bottom:1px dashed var(--line)}
+.v:last-child{border-bottom:0}
+.v .fr{font-size:1.3rem;font-style:italic;font-weight:500}
+.empty{border:1.5px dashed var(--line);border-radius:10px;padding:26px 20px;text-align:center;color:var(--mute)}
+.empty strong{display:block;color:var(--ink);font-size:1.1rem;margin-bottom:4px}
+.none{color:var(--mute);text-align:center;padding:14px}
+.qz{margin:14px 0}
+.qq{font-size:1.2rem;font-weight:500;line-height:1.5;margin:4px 0 6px}
+.opts{display:grid;gap:6px}
+.opt,.chip{font-family:"Cormorant Garamond",Georgia,serif;font-size:1.15rem;font-weight:500;padding:9px 12px;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--ink);cursor:pointer}
+.opt{text-align:left;width:100%}
+.opt.ok{border-color:#2E8B57;background:rgba(46,139,87,.18)}
+.opt.no{border-color:var(--ruby);background:rgba(158,27,52,.14)}
+.score{font-weight:700;color:var(--ruby);margin-top:10px}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:10px}
+.chip{font-family:"Cairo",system-ui,sans-serif;font-size:.92rem;font-weight:400;border-radius:999px;padding:6px 12px}
+.log{display:flex;flex-direction:column;max-height:55vh;overflow-y:auto}
+.msg{padding:10px 14px;border-radius:12px;margin:6px 0;white-space:pre-wrap;max-width:92%;font-size:1rem}
+.msg.u{align-self:flex-start;background:var(--ink);color:var(--bg)}
+.msg.b{align-self:flex-end;background:var(--card);border:1px solid var(--line)}
+.row{display:flex;gap:8px;margin-top:10px}
+.send{padding:0 18px;border:0;border-radius:10px;background:var(--ruby);color:var(--bg);font:inherit;font-weight:600;cursor:pointer}
+.send:disabled{opacity:.5}
+.gear{position:absolute;top:12px;right:16px;width:40px;height:40px;border:1px solid var(--line);border-radius:50%;background:var(--card);color:var(--ink);font-size:1.2rem;cursor:pointer}
+#settings{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:6px 16px 10px;margin:0 0 18px}
+#settings h2{margin:10px 0 4px;font-size:1.1rem}
+.set{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;padding:8px 0;border-bottom:1px dashed var(--line)}
+.set:last-child{border-bottom:0}
+.seg{display:flex;gap:6px}
+.chip.on{background:var(--ink);color:var(--bg)}
+.ar{direction:rtl;font-family:"Cairo",system-ui,sans-serif}
+.v .ar{text-align:right}
+.tl{display:block;text-align:right;font-size:.92rem;line-height:1.6;color:var(--mute);margin-top:2px}
+.tl:empty{display:none}
+.notr .ar{display:none!important}
+.bar{margin:20px 0 0}
+.login,.who{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px 16px;display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.login .search{flex:1;min-width:140px;margin:0!important}
+.who{justify-content:space-between}
+.who strong{color:var(--ruby);font-size:1.15rem}
+.dcard{border:1.5px solid var(--ruby);border-radius:12px;padding:2px 16px 14px;background:var(--card);margin:18px 0}
+.dcard h2{margin:12px 0 4px;font-size:1.1rem;color:var(--ruby)}
+#board ol{padding-inline-start:1.4em;margin:6px 0}
+.lb{display:flex;justify-content:space-between;gap:10px}
+.tabs{display:flex;gap:6px;margin:16px 0;overflow-x:auto}
+.tab{flex:1;padding:10px 8px;border:1px solid var(--line);border-radius:10px;background:var(--card);color:var(--ink);font:inherit;font-size:.95rem;cursor:pointer;white-space:nowrap}
+.tab.on{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.about{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px 16px;margin:0 0 16px}
+#board,#chat{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:4px 16px 14px;margin:14px 0 0}
+#board h2,#chat h2{margin:12px 0 8px;font-size:1.1rem}
+.gate{position:fixed;inset:0;z-index:50;background:var(--bg);display:flex;align-items:center;justify-content:center;padding:20px;padding-top:calc(20px + env(safe-area-inset-top,0px));overflow-y:auto}
+.gcard{width:100%;max-width:380px;text-align:center}
+.gcard h1{font-size:2.8rem}
+.gbtn{display:block;width:100%;padding:13px;border-radius:10px;font:inherit;font-weight:600;cursor:pointer;margin:10px 0;border:1px solid var(--line);background:var(--card);color:var(--ink)}
+.gbtn.main{background:var(--ruby);color:var(--bg);border-color:var(--ruby)}
+.gbtn:disabled{opacity:.5;cursor:not-allowed}
+.hint{font-size:.85rem;color:var(--mute);margin:0}
+.or{color:var(--mute);margin:14px 0 6px}
+body{background:radial-gradient(900px 320px at 50% -120px,color-mix(in srgb,var(--ruby) 9%,transparent),transparent),var(--bg)}
+.wrap{max-width:640px}
+header{border:0;padding-bottom:8px}
+.neck{width:min(240px,70%)}
+h1{font-weight:700;letter-spacing:-.01em}
+.by{letter-spacing:.04em}
+.tabs{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:4px;gap:2px}
+.tab{border:0;border-radius:12px;background:transparent;color:var(--mute);font-weight:500;padding:10px 6px;transition:background .2s,color .2s}
+.tab.on{background:var(--ink);color:var(--bg)}
+.who,.login,.about,#board,#chat,#settings,.dcard,details{border-radius:16px;box-shadow:0 1px 2px rgba(21,26,46,.04),0 12px 28px -18px rgba(21,26,46,.22)}
+details{border:1px solid var(--line);margin-bottom:12px;overflow:hidden}
+summary{padding:16px 18px;font-size:1.02rem}
+.n{background:color-mix(in srgb,var(--ruby) 12%,transparent);padding:1px 10px;border-radius:999px;font-size:.82rem;font-weight:600}
+.body{padding:4px 18px 18px;border-top:1px solid var(--line)}
+.pts li::marker{color:var(--ruby);font-weight:600}
+.v{background:var(--bg);border:0;border-radius:10px;padding:8px 12px;margin:6px 0}
+.opt{border-radius:12px;padding:12px 14px;background:var(--bg);transition:border-color .15s,transform .15s}
+.opt:not(.ok):not(.no):hover{border-color:var(--ruby)}
+.opt:active{transform:scale(.99)}
+.dcard{border:1px solid color-mix(in srgb,var(--ruby) 40%,var(--line));background:linear-gradient(135deg,var(--card),color-mix(in srgb,var(--ruby) 8%,var(--card)))}
+.search{border-radius:999px;padding:12px 18px}
+.who{padding:12px 18px}
+#settings{padding:6px 18px 10px}
+.msg{border-radius:16px}
+.send{border-radius:999px}
+.gate{background:radial-gradient(700px 360px at 50% -80px,color-mix(in srgb,var(--ruby) 12%,transparent),transparent),var(--bg)}
+.gbtn{border-radius:999px;padding:14px;box-shadow:0 8px 20px -12px rgba(21,26,46,.35)}
+.gcard .neck{margin-bottom:14px}
+.gate{background:color-mix(in srgb,var(--bg) 45%,transparent);-webkit-backdrop-filter:blur(16px) saturate(1.1);backdrop-filter:blur(16px) saturate(1.1)}
+.gcard{background:color-mix(in srgb,var(--card) 80%,transparent);border:1px solid var(--line);border-radius:24px;padding:28px 22px;box-shadow:0 24px 60px -24px rgba(21,26,46,.45)}
+[hidden]{display:none!important}
+</style>
+</head>
+<body>
+<div class="wrap">
+<button id="gear" class="gear" type="button" aria-label="Paramètres" aria-expanded="false">⚙</button>
+<header>
+<svg class="neck" viewBox="0 0 320 100" aria-hidden="true">
+<path class="arc" d="M20 10 Q160 110 300 10"/>
+<circle class="pearl" cx="48" cy="28" r="4"/><circle class="pearl" cx="76" cy="42" r="4.5"/><circle class="pearl" cx="104" cy="52" r="5"/><circle class="pearl" cx="132" cy="58" r="5.5"/>
+<circle class="pearl" cx="188" cy="58" r="5.5"/><circle class="pearl" cx="216" cy="52" r="5"/><circle class="pearl" cx="244" cy="42" r="4.5"/><circle class="pearl" cx="272" cy="28" r="4"/>
+<path class="gem" d="M160 62 L171 80 A12 12 0 1 1 149 80 Z"/>
+</svg>
+<h1 class="fr">Arsène Lupin</h1>
+<p class="by"><span class="fr" style="font-size:1.25rem;font-style:italic">Le Collier de la Reine</span> · Maurice Leblanc</p>
+</header>
+
+<section id="settings" hidden>
+<h2>Paramètres</h2>
+<div class="set"><span>Thème</span><span class="seg" id="sg-theme"><button class="chip" type="button" data-v="auto">Auto</button><button class="chip" type="button" data-v="light">Clair</button><button class="chip" type="button" data-v="dark">Sombre</button></span></div>
+<div class="set"><span>Taille du texte</span><span class="seg"><button class="chip" type="button" id="fsm">A−</button><button class="chip" type="button" id="fsp">A+</button></span></div>
+<div class="set"><span>Traduction arabe</span><span class="seg" id="sg-tr"><button class="chip" type="button" data-v="1">Oui</button><button class="chip" type="button" data-v="0">Non</button></span></div>
+</section>
+<p class="about">Résumés des cours de français sur le récit « Le Collier de la Reine », avec le vocabulaire de chaque chapitre.</p>
+
+<div id="bar" class="bar"></div>
+<section id="daily"></section>
+<section id="board" hidden></section>
+<h2>Chapitres</h2>
+<input id="q" class="search" type="search" placeholder="Rechercher un chapitre ou un mot" aria-label="Recherche" hidden>
+<div id="list"></div>
+<p id="none" class="none" hidden>Aucun résultat.</p>
+
+<section id="chat" hidden>
+<h2>Posez une question sur l’histoire</h2>
+<div id="chips" class="chips"></div>
+<div id="log" class="log"></div>
+<div class="row"><input id="ci" class="search" style="margin:0" placeholder="Votre question sur Arsène Lupin" aria-label="Question"><button id="cs" class="send" type="button">Envoyer</button></div>
+</section>
+</div>
+
+<script>
+// كل درس: {n: رقم, title: العنوان, summary: [فقرات], vocab: [[فرنسي, عربي], ...]}
+var LESSONS = [
+{n:1,title:'Le collier volé',summary:[
+'La comtesse de Dreux-Soubise a un très beau et célèbre collier, appelé « le collier de la reine ».',
+'Les vrais diamants ont été vendus. Ceux du collier maintenant sont de faux diamants, moins chers.',
+'La famille est très fière de ce collier et ne veut pas le vendre, même quand elle a des problèmes d’argent.',
+'Pour le protéger, le comte le garde dans un coffre-fort à la banque.',
+'Un soir, la comtesse porte le collier à un bal. Tout le monde trouve qu’il est très beau sur elle.',
+'De retour à la maison, le comte met le collier dans une petite boîte rouge.',
+'Il place la boîte dans une petite pièce à côté de leur chambre.',
+'Le lendemain matin, le comte veut rapporter le collier à la banque.',
+'Mais la boîte a disparu de la petite pièce. Le collier est volé !',
+'Le comte et la comtesse cherchent partout mais ne trouvent rien.',
+'Ils appellent un commissaire de police, M. Valorbe.',
+'Le commissaire inspecte la pièce. La porte de la chambre était fermée à clé.',
+'Il y a une fenêtre, mais elle est fermée et un meuble est devant. Il est impossible de l’ouvrir de l’extérieur.',
+'La comtesse parle d’Henriette, une ancienne amie pauvre qui habite dans la même maison avec son fils Raoul.',
+'Henriette a une cuisine dont la fenêtre donne sur la même cour que la petite pièce.',
+'Le commissaire interroge Henriette. Elle a l’air gentille et honnête. Son petit fils lit tranquillement.',
+'La police ne trouve aucune preuve contre Henriette. L’enquête n’avance pas.',
+'Finalement, le juge pense que le comte et la comtesse ont peut-être vendu le collier en secret. Il arrête l’enquête.',
+'Quelques mois plus tard, Henriette, qui vit maintenant ailleurs, envoie une lettre.',
+'Elle remercie la comtesse parce qu’elle a reçu 2000 francs par la poste. Elle pense que c’est la comtesse qui a envoyé cet argent. Mais la comtesse ne comprend pas. Chaque année, pendant six ans, Henriette reçoit de l’argent. Le mystère reste complet.'],
+vocab:[['un coffre-fort','خزنة'],['un bal','حفل'],['de faux diamants','ماس مزيف'],['un commissaire','مفوض شرطة'],['une enquête','تحقيق'],['une preuve','دليل'],['un juge','قاضٍ'],['un mystère','لغز']],quiz:[
+{q:'Comment s’appelle le collier célèbre de la comtesse ?',o:['le collier de la reine','le collier du comte','le collier rouge'],a:0},
+{q:'Pourquoi le collier est-il moins cher maintenant ?',o:['Il est très vieux','Les vrais diamants ont été vendus','Il est cassé'],a:1},
+{q:'Où le comte met-il le collier après le bal ?',o:['Dans le coffre-fort','Sous le lit','Dans une petite boîte rouge'],a:2},
+{q:'Comment s’appelle le commissaire de police ?',o:['M. Floriani','M. Valorbe','M. Raoul'],a:1},
+{q:'Pourquoi le juge arrête-t-il l’enquête ?',o:['Il pense que le comte et la comtesse ont vendu le collier en secret','Il trouve le voleur','Henriette avoue'],a:0},
+{q:'Qui reçoit de l’argent par la poste pendant six ans ?',o:['La comtesse','Le commissaire','Henriette'],a:2},
+{q:'Qui est Henriette ?',o:['Une ancienne amie pauvre de la comtesse','La fille du comte','Une policière'],a:0},
+{q:'Que veut faire le comte le lendemain matin ?',o:['Vendre le collier','Rapporter le collier à la banque','Appeler Henriette'],a:1},
+{q:'Pourquoi est-il impossible d’ouvrir la fenêtre de l’extérieur ?',o:['Elle est fermée et un meuble est devant','Elle n’existe pas','Elle est trop haute'],a:0},
+{q:'De quelle couleur est la boîte du collier ?',o:['Bleue','Rouge','Noire'],a:1}
+]},
+{n:2,title:'Le jeune Raoul',summary:[
+'Quelques années plus tard, le comte et la comtesse reçoivent des invités à manger.',
+'Après le repas, les hommes parlent de crimes célèbres.',
+'Un général parle du vol du collier de la comtesse, qui n’a jamais été résolu.',
+'Un invité italien, le chevalier Floriani, écoute mais ne dit rien au début.',
+'On lui demande son avis. Il dit d’abord qu’il ne sait pas.',
+'Puis il écoute l’histoire du vol : le collier a disparu d’une pièce fermée à clé.',
+'Floriani réfléchit et pose des questions.',
+'Il explique sa théorie : le voleur est entré par la fenêtre.',
+'Le comte dit : « Non, la fenêtre était fermée de l’intérieur ! »',
+'Floriani propose une idée : il y a une petite fenêtre dans la grande, appelée un vasistas.',
+'Il dit qu’il y a une petite fente (une coupure étroite) dans le verre de la fenêtre.',
+'Le comte va vérifier et revient choqué : la fente existe vraiment !',
+'Floriani continue : le vasistas est trop petit pour un homme, mais parfait pour un enfant.',
+'Il accuse Raoul, le jeune fils de l’ancienne bonne, Henriette.',
+'L’enfant aurait utilisé des planches (étagères) pour faire un pont et traverser la cour.',
+'Il aurait utilisé un bâton en fer (une baguette) pour ouvrir le vasistas par la fente.',
+'Le comte va vérifier : les planches ne sont pas fixées et il trouve le bâton en fer.',
+'Floriani révèle qu’il est cet enfant, Raoul, devenu grand. Il a volé pour aider sa mère malade.',
+'Quelques jours plus tard, la comtesse retrouve le collier sur sa table. Les diamants étaient faux, mais la chaîne en or est rendue.',
+'Un journal annonce que le célèbre voleur Arsène Lupin a rendu le collier à ses propriétaires. Le chevalier Floriani est en réalité Arsène Lupin.'],
+vocab:[['un vasistas','نافذة صغيرة'],['une fente','شق'],['une planche','لوح خشبي'],['un pont','جسر'],['une baguette','عصا'],['un bâton en fer','عصا حديدية'],['un invité','ضيف'],['résolu','محلول'],['un voleur','لص']],quiz:[
+{q:'Comment s’appelle l’invité italien ?',o:['Le chevalier Floriani','Le général','M. Valorbe'],a:0},
+{q:'Qu’est-ce qu’un vasistas ?',o:['Une porte secrète','Une petite fenêtre dans la grande','Un meuble'],a:1},
+{q:'Pourquoi Floriani pense-t-il à un enfant ?',o:['Le comte a vu un enfant','Henriette a avoué','Le vasistas est trop petit pour un homme'],a:2},
+{q:'Qui Floriani accuse-t-il ?',o:['Henriette','Raoul, le fils d’Henriette','Le général'],a:1},
+{q:'Qu’est-ce que l’enfant aurait utilisé pour ouvrir le vasistas ?',o:['Une clé','Un couteau','Un bâton en fer'],a:2},
+{q:'Pourquoi Raoul a-t-il volé le collier ?',o:['Pour aider sa mère malade','Pour être riche','Pour le vendre à la banque'],a:0},
+{q:'Qui est Floriani en réalité ?',o:['Le juge','Arsène Lupin','Le commissaire'],a:1},
+{q:'De quoi parlent les hommes après le repas ?',o:['De politique','De crimes célèbres','De voyages'],a:1},
+{q:'Que signifie « une fente » ?',o:['Une coupure étroite','Une grande porte','Une clé'],a:0},
+{q:'Comment revient le comte après avoir vérifié la fente ?',o:['Content','Endormi','Choqué'],a:2},
+{q:'Que trouve la comtesse sur sa table quelques jours plus tard ?',o:['Une lettre de Raoul','Le collier, avec de faux diamants','Un bâton en fer'],a:1}
+]}
+];
+
+var list = document.getElementById('list');
+var q = document.getElementById('q');
+var none = document.getElementById('none');
+
+function el(tag, cls, text){
+  var e = document.createElement(tag);
+  if (cls) e.className = cls;
+  if (text != null) e.textContent = text;
+  return e;
+}
+
+function render(){
+  if (!LESSONS.length){
+    var box = el('div', 'empty');
+    box.appendChild(el('strong', null, 'Aucun chapitre pour le moment'));
+    box.appendChild(el('span', null, 'Le résumé et le vocabulaire apparaîtront ici.'));
+    list.appendChild(box);
+    return;
+  }
+  q.hidden = false;
+  LESSONS.forEach(function(l){
+    var d = el('details');
+    var s = el('summary');
+    s.appendChild(el('span', 'n', 'Chapitre ' + l.n));
+    s.appendChild(el('span', null, l.title));
+    d.appendChild(s);
+    var b = el('div', 'body');
+    b.appendChild(el('h3', null, 'Points clés'));
+    var ol = el('ol', 'pts');
+    (l.summary || []).forEach(function(p){ var li = el('li', null, p); li.appendChild(el('span', 'ar tl')); ol.appendChild(li); });
+    b.appendChild(ol);
+    if (l.vocab && l.vocab.length){
+      b.appendChild(el('h3', null, 'Vocabulaire'));
+      l.vocab.forEach(function(v){
+        var r = el('div', 'v');
+        r.appendChild(el('span', 'fr', v[0]));
+        r.appendChild(el('span', 'ar', v[1]));
+        b.appendChild(r);
+      });
+    }
+    if (l.quiz && l.quiz.length){
+      b.appendChild(el('h3', null, 'Testez-vous'));
+      var score = 0, done = 0, res = el('p', 'score');
+      l.quiz.forEach(function(it, qi){
+        var qb = el('div', 'qz');
+        qb.appendChild(el('p', 'qq fr', (qi + 1) + '. ' + it.q));
+        var opts = el('div', 'opts');
+        it.o.forEach(function(t, oi){
+          var bt = el('button', 'opt fr', t);
+          bt.type = 'button';
+          bt.addEventListener('click', function(){
+            if (qb.dataset.d) return;
+            qb.dataset.d = 1; done++; award(l.n + '-' + qi, oi === it.a, oi);
+            if (oi === it.a){ score++; bt.classList.add('ok'); }
+            else { bt.classList.add('no'); opts.children[it.a].classList.add('ok'); }
+            if (done === l.quiz.length) res.textContent = 'Votre score : ' + score + ' / ' + l.quiz.length;
+          });
+          opts.appendChild(bt);
+        });
+        var pa = P.a[l.n + '-' + qi];
+        if (pa !== undefined){ qb.dataset.d = 1; done++; if (pa === it.a) score++; opts.children[pa].classList.add(pa === it.a ? 'ok' : 'no'); opts.children[it.a].classList.add('ok'); }
+        qb.appendChild(opts);
+        b.appendChild(qb);
+      });
+      b.appendChild(res);
+    }
+    d._t = function(){ tl(l, ol); };
+    d.addEventListener('toggle', function(){ if (d.open) d._t(); });
+    d.appendChild(b);
+    d.dataset.t = d.textContent.toLowerCase();
+    list.appendChild(d);
+  });
+}
+
+(function(){
+  var useP = (window.claude && claude.use) ? claude.use('sample').catch(function(){ return null; }) : Promise.resolve(null);
+  useP.then(function(sample){
+    
+    SAMPLE = sample;
+    var box = document.getElementById('chat'), log = document.getElementById('log'), ci = document.getElementById('ci'), cs = document.getElementById('cs'), chips = document.getElementById('chips'), hist = [], busy = false;
+    box.hidden = false;
+    document.getElementById('nochat').hidden = true;
+    function add(c, t){ var m = el('div', 'msg ' + c, t); log.appendChild(m); log.scrollTop = log.scrollHeight; return m; }
+    add('b', 'Bonjour ! Posez-moi une question : je réponds à partir des informations du site.');
+    ['Qui est Arsène Lupin ?', 'Que signifie « vasistas » ?', 'Pourquoi les diamants sont-ils faux ?'].forEach(function(t){
+      var c = el('button', 'chip', t); c.type = 'button';
+      c.onclick = function(){ ask(t); };
+      chips.appendChild(c);
+    });
+    function ask(t){
+      t = (t || '').trim();
+      if (busy || !t) return;
+      busy = true; cs.disabled = true; ci.value = ''; chips.hidden = true;
+      add('u', t);
+      var m = add('b', '...');
+      var ctx = JSON.stringify(LESSONS.map(function(l){ return {chapitre: l.n, titre: l.title, resume: l.summary, vocabulaire: l.vocab}; }));
+      var _old = 'أنت مدرّس لطيف بتساعد طالب مصري في مذاكرة قصة «Le Collier de la Reine» لموريس لوبلان (سلسلة أرسين لوبين، اللص النبيل). جاوب بعربي مصري بسيط وقصير (٦ سطور بالكتير) وسيب الكلمات والأسماء الفرنسية بالفرنسي. اعتمد أولاً على ملخصات الطالب تحت، وكمّل من معلوماتك عن الرواية الأصلية وسلسلة أرسين لوبين. لو مش متأكد من معلومة قول كده ومتألفش تفاصيل. لو السؤال بعيد عن القصة رجّعه بلطف للموضوع.\n\nملخصات الطالب (JSON):\n' + ctx + '\n\nالمحادثة السابقة:\n' + hist.slice(-6).join('\n') + '\n\nسؤال الطالب الجديد: ' + t;
+      var prompt = 'Tu es un professeur sympathique qui aide un élève égyptien à étudier le récit « Le Collier de la Reine » de Maurice Leblanc (série Arsène Lupin, gentleman-cambrioleur). Réponds en français simple et court (6 lignes maximum)' + (S.tr ? ', puis ajoute en dessous une traduction en arabe égyptien simple' : '') + '. Réponds UNIQUEMENT à partir des informations du site ci-dessous (résumés et vocabulaire des chapitres). Si la réponse n’y figure pas, dis-le simplement et n’invente rien. Si la question n’a aucun rapport avec le récit, ramène gentiment la conversation au sujet.\n\nRésumés de l’élève (JSON) :\n' + ctx + '\n\nConversation précédente :\n' + hist.slice(-6).join('\n') + '\n\nNouvelle question de l’élève : ' + t;
+      if (!sample){ m.textContent = localAnswer(t); busy = false; cs.disabled = false; log.scrollTop = log.scrollHeight; return; }
+      sample(prompt, {cache: false, onText: function(r){ m.textContent = r.text; log.scrollTop = log.scrollHeight; }})
+        .then(function(r){ m.textContent = r.text; hist.push('الطالب: ' + t, 'المساعد: ' + r.text); })
+        .catch(function(e){ m.textContent = localAnswer(t); return; m.textContent = (e && e.code === 'not_granted') ? 'Veuillez accepter l’autorisation pour utiliser le chat.' : (e && e.code === 'rate_limited') ? 'Patientez un instant puis réessayez.' : 'Un problème est survenu, réessayez.'; })
+        .then(function(){ busy = false; cs.disabled = false; });
+    }
+    cs.onclick = function(){ ask(ci.value); };
+    ci.addEventListener('keydown', function(e){ if (e.key === 'Enter') ask(ci.value); });
+  });
+})();
+
+var SAMPLE = null, TR = {};
+var S = {theme: 'auto', fs: 17, tr: true};
+try { Object.assign(S, JSON.parse(localStorage.getItem('lupin') || '{}')); TR = JSON.parse(localStorage.getItem('lupin_tr') || '{}'); } catch (e) {}
+function save(){ try { localStorage.setItem('lupin', JSON.stringify(S)); localStorage.setItem('lupin_tr', JSON.stringify(TR)); } catch (e) {} }
+function mark(id, v){ document.querySelectorAll('#' + id + ' button').forEach(function(b){ b.classList.toggle('on', b.dataset.v === String(v)); }); }
+function apply(){
+  var r = document.documentElement;
+  if (S.theme === 'auto') r.removeAttribute('data-theme'); else r.setAttribute('data-theme', S.theme);
+  r.style.setProperty('--fs', S.fs + 'px');
+  document.body.classList.toggle('notr', !S.tr);
+  mark('sg-theme', S.theme); mark('sg-tr', S.tr ? 1 : 0);
+}
+function tl(l, ol){
+  if (!S.tr || ol.dataset.tl) return;
+  function fill(a){ ol.dataset.tl = 1; for (var i = 0; i < ol.children.length; i++) ol.children[i].lastChild.textContent = a[i] || ''; }
+  if (TR[l.n]) return fill(TR[l.n]);
+  if (!SAMPLE) return;
+  SAMPLE.json('Traduis ces phrases françaises en arabe simple et clair. Réponds uniquement par un tableau JSON de ' + l.summary.length + ' chaînes, dans le même ordre.\n' + JSON.stringify(l.summary)).then(function(a){ if (Array.isArray(a)){ TR[l.n] = a; save(); fill(a); } }).catch(function(){});
+}
+document.getElementById('gear').onclick = function(){ var s = document.getElementById('settings'); s.hidden = !s.hidden; this.setAttribute('aria-expanded', String(!s.hidden)); };
+document.querySelectorAll('#sg-theme button').forEach(function(b){ b.onclick = function(){ S.theme = b.dataset.v; save(); apply(); }; });
+document.querySelectorAll('#sg-tr button').forEach(function(b){ b.onclick = function(){ S.tr = b.dataset.v === '1'; save(); apply(); if (S.tr) list.querySelectorAll('details[open]').forEach(function(d){ if (d._t) d._t(); }); }; });
+document.getElementById('fsm').onclick = function(){ S.fs = Math.max(14, S.fs - 1); save(); apply(); };
+document.getElementById('fsp').onclick = function(){ S.fs = Math.min(24, S.fs + 1); save(); apply(); };
+apply();
+
+var DAILY = [
+{q:'Combien de francs Henriette reçoit-elle par la poste chaque année ?',o:['500 francs','1000 francs','2000 francs','5000 francs'],a:2},
+{q:'Pendant combien d’années Henriette reçoit-elle de l’argent ?',o:['Trois ans','Quatre ans','Six ans','Dix ans'],a:2},
+{q:'Quelle remarque du comte semble d’abord détruire la théorie de Floriani ?',o:['La porte était ouverte','La fenêtre était fermée de l’intérieur','Le coffre était vide','Il y avait un chien'],a:1},
+{q:'Que rend-on à la comtesse à la fin ?',o:['Les vrais diamants','Seulement la boîte','Un collier de faux diamants avec la chaîne en or','Rien du tout'],a:2},
+{q:'Pourquoi la police ne soupçonne-t-elle pas sérieusement Henriette ?',o:['Elle a un alibi','Elle a l’air honnête et on ne trouve aucune preuve','Elle est la sœur du comte','Elle a disparu'],a:1},
+{q:'À quoi servent les planches imaginées par Floriani ?',o:['À fermer la fenêtre','À faire un pont pour traverser la cour','À cacher la boîte','À monter au toit'],a:1},
+{q:'Comment la comtesse apprend-elle que Lupin a rendu le collier ?',o:['Par une lettre d’Henriette','Par le commissaire','Par un journal','Par le général'],a:2},
+{q:'Quelle est la première réaction de Floriani quand on lui demande son avis ?',o:['Il accuse Henriette','Il dit qu’il ne sait pas','Il quitte la table','Il propose une enquête'],a:1},
+{q:'Pourquoi le vasistas convient-il parfaitement à Raoul ?',o:['Il est trop petit pour un homme mais parfait pour un enfant','Il est toujours ouvert','Il donne sur la rue','Il n’a pas de verre'],a:0},
+{q:'Où le comte garde-t-il normalement le collier pour le protéger ?',o:['Sous son lit','Dans un coffre-fort à la banque','Chez Henriette','Dans la cuisine'],a:1}
+];
+var P = {name: '', s: 0, a: {}, d: {}}, DB = null, UID = null, ACCNAME = '';
+try { Object.assign(P, JSON.parse(localStorage.getItem('lupin_p') || '{}')); } catch (e) {}
+var bar = document.getElementById('bar'), board = document.getElementById('board'), daily = document.getElementById('daily');
+function saveP(){ try { localStorage.setItem('lupin_p', JSON.stringify(P)); } catch (e) {} }
+function push(){ if (DB && UID && P.name) DB.doc('scores/' + UID).set({name: P.name, score: P.s}).catch(function(){}); }
+function award(id, ok, choice){ if (P.a[id] !== undefined) return; P.a[id] = choice; if (ok) P.s += 1; saveP(); renderBar(); push(); }
+function setName(n){ n = (n || '').trim().slice(0, 24); if (!n) return; P.name = n; saveP(); push(); renderBar(); }
+function renderBar(){
+  bar.textContent = '';
+  if (P.name) hideGate();
+  if (!P.name){ showGate(); return; }
+  if (false){
+    var f = el('div', 'login');
+    f.appendChild(el('strong', null, 'Qui joue ?'));
+    var inp = el('input', 'search'); inp.placeholder = 'Votre nom'; inp.maxLength = 24; inp.setAttribute('aria-label', 'Nom');
+    var go = el('button', 'send', 'Jouer'); go.type = 'button'; go.style.padding = '10px 18px';
+    go.onclick = function(){ setName(inp.value); };
+    inp.addEventListener('keydown', function(e){ if (e.key === 'Enter') setName(inp.value); });
+    f.appendChild(inp); f.appendChild(go);
+    if (ACCNAME){ var ac = el('button', 'chip', 'Continuer avec mon compte Claude'); ac.type = 'button'; ac.onclick = function(){ setName(ACCNAME); }; f.appendChild(ac); }
+    bar.appendChild(f);
+    return;
+  }
+  var w = el('div', 'who');
+  w.appendChild(el('span', null, '👤 ' + P.name));
+  w.appendChild(el('strong', null, P.s + ' pts'));
+  var ch = el('button', 'chip', 'Changer de nom'); ch.type = 'button';
+  ch.onclick = function(){ P.name = ''; saveP(); renderBar(); };
+  w.appendChild(ch);
+  bar.appendChild(w);
+}
+function renderDaily(){
+  var t = new Date(), key = t.getFullYear() + '-' + (t.getMonth() + 1) + '-' + t.getDate();
+  var it = DAILY[Math.floor(Date.UTC(t.getFullYear(), t.getMonth(), t.getDate()) / 864e5) % DAILY.length];
+  daily.textContent = '';
+  var card = el('div', 'dcard');
+  card.appendChild(el('h2', null, 'Question du jour · 10 points'));
+  card.appendChild(el('p', 'qq fr', it.q));
+  var opts = el('div', 'opts');
+  it.o.forEach(function(x, oi){
+    var bt = el('button', 'opt fr', x); bt.type = 'button';
+    bt.onclick = function(){ if (P.d[key] !== undefined) return; P.d[key] = oi; if (oi === it.a) P.s += 10; saveP(); renderBar(); push(); renderDaily(); };
+    opts.appendChild(bt);
+  });
+  card.appendChild(opts);
+  var c = P.d[key];
+  if (c !== undefined){
+    opts.children[it.a].classList.add('ok');
+    if (c !== it.a) opts.children[c].classList.add('no');
+    card.appendChild(el('p', 'score', c === it.a ? 'Bravo ! +10 points. Revenez demain.' : 'Raté. Revenez demain pour une nouvelle question.'));
+  }
+  daily.appendChild(card);
+}
+function renderBoard(docs){
+  board.hidden = false; board.textContent = '';
+  board.appendChild(el('h2', null, 'Classement'));
+  if (!docs.length){ board.appendChild(el('p', 'none', 'Aucun score pour le moment.')); return; }
+  var ol = el('ol');
+  docs.forEach(function(d){
+    var v = d.data() || {}, li = el('li'), r = el('span', 'lb');
+    r.appendChild(el('span', null, String(v.name || '?')));
+    r.appendChild(el('strong', null, (v.score || 0) + ' pts'));
+    li.appendChild(r); ol.appendChild(li);
+  });
+  board.appendChild(ol);
+}
+var gate = el('div', 'gate'), gname = '';
+gate.hidden = true; document.body.appendChild(gate);
+function hideGate(){ gate.hidden = true; }
+function showGate(){
+  gate.hidden = false; gate.textContent = '';
+  var c = el('div', 'gcard');
+  c.appendChild(document.querySelector('.neck').cloneNode(true));
+  c.appendChild(el('h1', 'fr', 'Arsène Lupin'));
+  c.appendChild(el('p', 'by', 'Le Collier de la Reine · Bienvenue !'));
+  var s = el('button', 'gbtn main', 'Se connecter avec mon compte'); s.type = 'button'; s.disabled = !UID;
+  s.onclick = function(){ setName(ACCNAME || gname.trim()); };
+  c.appendChild(s);
+  if (!UID) c.appendChild(el('p', 'hint', 'Connexion indisponible sur cet appareil : entrez en invité.'));
+  c.appendChild(el('p', 'or', 'ou'));
+  var i = el('input', 'search'); i.placeholder = 'Votre nom (obligatoire)'; i.maxLength = 24; i.value = gname; i.setAttribute('aria-label', 'Nom');
+  i.oninput = function(){ gname = i.value; g.disabled = !gname.trim(); };
+  var g = el('button', 'gbtn', 'Entrer en invité'); g.type = 'button';
+  g.disabled = !gname.trim();
+  g.onclick = function(){ setName(gname.trim()); };
+  i.addEventListener('keydown', function(e){ if (e.key === 'Enter') g.onclick(); });
+  c.appendChild(i); c.appendChild(g);
+  gate.appendChild(c);
+}
+var TABS = [['cours', 'Cours'], ['defi', 'Défi'], ['chat', 'Chat'], ['set', 'Réglages']], panels = {}, nav = el('nav', 'tabs');
+function showTab(n){
+  TABS.forEach(function(t){ panels[t[0]].hidden = t[0] !== n; });
+  nav.querySelectorAll('.tab').forEach(function(b){ b.classList.toggle('on', b.dataset.t === n); });
+}
+var ref = nav;
+TABS.forEach(function(t){
+  var p = el('div', 'panel'); p.hidden = true; panels[t[0]] = p;
+  var b = el('button', 'tab', t[1]); b.type = 'button'; b.dataset.t = t[0];
+  b.onclick = function(){ showTab(t[0]); };
+  nav.appendChild(b);
+});
+bar.after(nav);
+TABS.forEach(function(t){ ref.after(panels[t[0]]); ref = panels[t[0]]; });
+document.querySelector('.wrap > h2').remove();
+[document.querySelector('.about'), q, list, none].forEach(function(n){ panels.cours.appendChild(n); });
+panels.defi.appendChild(daily); panels.defi.appendChild(board);
+var nc = el('p', 'none', 'Le chat n’est pas disponible ici.'); nc.id = 'nochat';
+panels.chat.appendChild(document.getElementById('chat')); panels.chat.appendChild(nc);
+var st = document.getElementById('settings'); st.hidden = false; panels.set.appendChild(st);
+document.getElementById('gear').onclick = function(){ showTab('set'); };
+showTab('cours');
+renderBar(); renderDaily();
+if (window.claude && claude.use){
+  claude.use('user').then(function(u){ return u ? u.me() : null; }).then(function(m){
+    if (!m || !m.id) return null;
+    UID = m.id; ACCNAME = m.name || ''; renderBar();
+    return claude.use('db');
+  }).then(function(db){
+    if (!db) return;
+    DB = db; push();
+    db.collection('scores').orderBy('score', 'desc').limit(10).onSnapshot(function(snap){ renderBoard(snap.docs); }, function(){});
+  }).catch(function(){});
+}
+
+function localAnswer(t){
+  var stop = ['les','des','que','qui','est','une','pour','dans','quoi','quel','quelle','comment','pourquoi','and','the'];
+  var words = t.toLowerCase().split(/[^a-zà-ÿ0-9\u0600-\u06FF]+/).filter(function(w){ return w.length > 2 && stop.indexOf(w) < 0; });
+  var hits = [];
+  LESSONS.forEach(function(l){
+    (l.summary || []).forEach(function(p){ hits.push({s: p, t: p.toLowerCase(), c: l.n}); });
+    (l.vocab || []).forEach(function(v){ hits.push({s: v[0] + ' = ' + v[1], t: (v[0] + ' ' + v[1]).toLowerCase(), c: l.n}); });
+  });
+  hits.forEach(function(h){ h.k = words.reduce(function(n, w){ return n + (h.t.indexOf(w) > -1 ? 1 : 0); }, 0); });
+  hits = hits.filter(function(h){ return h.k > 0; }).sort(function(a, b){ return b.k - a.k; }).slice(0, 3);
+  if (!hits.length) return 'Je ne trouve pas cette information sur le site. Essayez avec d’autres mots (un nom, un objet, un événement).';
+  return hits.map(function(h){ return '• (Chapitre ' + h.c + ') ' + h.s; }).join('\n');
+}
+
+q.addEventListener('input', function(){
+  var t = q.value.trim().toLowerCase(), shown = 0;
+  list.querySelectorAll('details').forEach(function(d){
+    var ok = !t || d.dataset.t.indexOf(t) > -1;
+    d.hidden = !ok;
+    if (ok) shown++;
+  });
+  none.hidden = shown > 0;
+});
+
+render();
+</script>
+</body>
+</html>
